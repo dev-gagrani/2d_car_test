@@ -22,7 +22,7 @@
 #include "Game.h"
 
 Game::Game( MainWindow& wnd )
-	:
+	:car0(),
 	wnd( wnd ),
 	gfx( wnd )
 {
@@ -38,8 +38,27 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		car0.up();
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		car0.down();
+	}
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		car0.left();
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		car0.right();
+	}
+	car0.move_car();
+	car0.reorient();
 }
 
 void Game::ComposeFrame()
 {
+	car0.display_car(gfx);
 }
